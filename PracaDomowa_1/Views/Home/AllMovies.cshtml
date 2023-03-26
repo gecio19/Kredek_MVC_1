@@ -1,0 +1,94 @@
+﻿@model IEnumerable<PracaDomowa_1.Models.Movie>
+    @{
+        ViewData["Title"] = "Movies rating";
+    }
+
+    <h1>Movies Menu:
+    </h1>
+    <a>
+    @Html.ActionLink("Roll Movie","RandomMovie")
+
+</a>
+    
+
+    <head>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    
+
+
+    </head>
+
+
+
+    <table class="table">
+        <thead>
+            <tr>
+              <th>Number</th>
+             <th>Nazwa</th>
+             <th>Rating</th>
+             <th>Zdjecie</th>
+             <th>
+
+             </th>
+            </tr>
+        </thead>
+    <tbody>
+        @foreach (var Movie in Model)
+        {
+            <tr>
+                <td>
+                    @Movie.Id
+                </td>
+                <td>
+                    @Movie.Name
+                </td>
+                <td>
+                    @Movie.Rating
+                </td>
+                <td>
+                    <img src="~/images/@Movie.Image" style="height: 9rem; width:15 rem" class="rounded" />
+                </td>
+                <td>
+                    <button type="button" class="btn btn-info"  onclick="MoveDetails(@Movie.Id)">Show More</button>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+
+        </table>
+
+
+
+ <div id="partialModal" class="modal" tabindex="-1" role="dialog">
+       
+    </div>
+
+                    <script>
+    function MoveDetails(_id)
+    {
+            let formData = {
+                id:_id
+                            }
+                            $.ajax({
+                                url: "MoveDetails",
+                                type: "POST",
+                                data: formData,
+                                success: function (response)
+                                {
+                                    $("#partialModal").html(response);
+
+                                    $("#partialModal").modal('show');
+                                },
+                                error: function (request, status, error) {
+                                    alert(request.responseText);
+                                }
+
+                            });
+                        }
+                    </script>

@@ -1,0 +1,62 @@
+﻿@model PracaDomowa_1.Models.Movie
+
+
+
+
+
+
+
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">@Model.Name </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+         <div class="float-container">
+                  <div class="float-child">
+                <img src="~/images/@Model.Image" style="height: 9rem; width:15 rem" class="rounded" />
+                  </div>
+  
+                  <div class="float-child">
+                    @Model.Description
+                  </div>
+
+         </div>
+                  <h4> Rating: @Model.Rating </h4>
+
+
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+
+
+
+                <style>
+                    .float-container {
+    border: 3px solid #fff;
+    padding: 20px;
+}
+
+.float-child {
+    width: 50%;
+    position:relative;
+    float: left;
+    padding: 10px;
+}
+
+</style>
+
+
+
+                  <script>
+                      function hide()
+                      {
+                 $("#partialModal").modal('hide');
+                      }
+                  </script>
