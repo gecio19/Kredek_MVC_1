@@ -6,6 +6,10 @@
 
 <h1>Koszyk</h1>
 
+
+
+<div id="MainDiv">
+
 @if (Model.Any())
 {
     <table class="table">
@@ -47,12 +51,19 @@
 
 
 
+
+
+
+
+
+
 }
 else
 {
     <h5>Brak filmu w koszyku</h5>
 }
 
+</div>
 
 
 <style>
@@ -77,28 +88,30 @@ else
         
         function Summar()
         {
-            var tbodyLen = document.querySelector("body > div > main > table > tbody").children.length
-
-
+           
             var result = '';
             var totalPrice = 0;
 
+
+            if (document.querySelector("#MainDiv > table > tbody").children.length != 0) {
+                var tbodyLen = document.querySelector("#MainDiv > table > tbody").children.length
             for (let i = 0; i < tbodyLen; i++) {
-                let price = document.querySelector("body > div > main > table > tbody").children[i].children[1].innerHTML.replace(',','.');
+                    let price = document.querySelector("#MainDiv > table > tbody").children[i].children[1].innerHTML.replace(',', '.');
                 result += '<li>' + price+ '</li>';
-
-
                 totalPrice += Number(price);
-
              }
-
             result += '--------------' + '<br>' + totalPrice.toFixed(2);
-
-
-
             $(".Summary_list").html(result);
+            
+            }
+            else
+            {
+                $("#MainDiv").html("<h5>Brak filmu w koszyku</h5>");
 
-            console.log(totalPrice);
+            }
+
+
+
 
         }
 
