@@ -16,6 +16,18 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Czesio\Desktop\Koło_Kredek\Prace Domowe\Kredek_MVC_1\PracaDomowa_1
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/Czesio/Desktop/Koło_Kredek/Prace Domowe/Kredek_MVC_1/PracaDomowa_1/Views/Cart/CreateOrder.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxDcmVhdGVPcmRlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Czesio/Desktop/Koło_Kredek/Prace Domowe/Kredek_MVC_1/PracaDomowa_1/Views/Cart/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Czesio/Desktop/Koło_Kredek/Prace Domowe/Kredek_MVC_1/PracaDomowa_1/Views/Cart/PlacedOrder.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxQbGFjZWRPcmRlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Czesio/Desktop/Koło_Kredek/Prace Domowe/Kredek_MVC_1/PracaDomowa_1/Views/Home/AllMovies.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBbGxNb3ZpZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

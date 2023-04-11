@@ -1,0 +1,149 @@
+﻿@model IEnumerable<CartItem>
+
+@{
+    ViewData["Title"] = "Koszyk";
+}
+
+<h1>Koszyk</h1>
+
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nazwa</th>
+                <th>Cena</th>
+                <th>Ilośc</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody >
+            @foreach (var item in Model)
+            {
+                <tr id="row-@item.Id" >
+                    <td>@item.Name</td>
+                    <td id="price-@item.Id">@(item.Price * item.Count)</td>
+                    <td id="count-@item.Id">@item.Count</td>
+                    <td>
+                        <button class="btn btn-outline-primary mx-1 add-button" value="@item.Id">+</button>
+                        <button class="btn btn-outline-primary mx-1 sub-button" value="@item.Id">-</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @Html.ActionLink("Zamów", "CreateOrder", "Cart", null, new {@class = "btn btn-primary"})
+
+    
+
+    <div class="Summary">
+        Podsumowanie: <br>
+        ---------------------------------------<br>
+        <ul class="Summary_list">
+            <li> cos</li>
+        </ul>
+
+    </div>
+
+
+
+}
+else
+{
+    <h5>Brak filmu w koszyku</h5>
+}
+
+
+
+<style>
+    .Summary {
+        margin-left:70%;
+        margin-left:70%;
+    }
+
+
+</style>
+
+
+@section Scripts
+    {
+    <script>
+
+
+        $(document).ready(function () {
+            Summar();
+        });
+
+        
+        function Summar()
+        {
+            var tbodyLen = document.querySelector("body > div > main > table > tbody").children.length
+
+
+            var result = '';
+            var totalPrice = 0;
+
+            for (let i = 0; i < tbodyLen; i++) {
+                let price = document.querySelector("body > div > main > table > tbody").children[i].children[1].innerHTML.replace(',','.');
+                result += '<li>' + price+ '</li>';
+
+
+                totalPrice += Number(price);
+
+             }
+
+            result += '--------------' + '<br>' + totalPrice.toFixed(2);
+
+
+
+            $(".Summary_list").html(result);
+
+            console.log(totalPrice);
+
+        }
+
+
+
+
+
+
+
+
+        $(".add-button").click(function () {
+            $.ajax({
+                type: "POST",
+                url: "/Cart/AddItem",
+                data: { itemId: $(this).val() },
+                success: function (response) {
+                    document.getElementById(`count-${response.id}`).innerHTML = response.count;
+                    document.getElementById(`price-${response.id}`).innerHTML = (response.count * response.price).toFixed(2);
+                    Summar();
+                },
+                error: function () {
+                    alert("Błąd!");
+                }
+            });
+        });
+
+        $(".sub-button").click(function () {
+            $.ajax({
+                type: "POST",
+                url: "/Cart/DeleteItem",
+                data: { itemId: $(this).val() },
+                success: function (response) {
+                    if (response.count > 0) {
+                        document.getElementById(`count-${response.id}`).innerHTML = response.count;
+                        document.getElementById(`price-${response.id}`).innerHTML = (response.count * response.price).toFixed(2);
+                        Summar();
+                    } else {
+                        document.getElementById(`row-${response.id}`).remove();
+                        Summar();
+                    }
+                },
+                error: function () {
+                    alert("Błąd!");
+                }
+            });
+        });
+    </script>
+}

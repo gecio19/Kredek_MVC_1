@@ -6,11 +6,11 @@ namespace PracaDomowa_1.Repositories
     {
         private static readonly ICollection<Movie> _movies = new List<Movie>()
         {
-            new(1,"Skazani na Shawshank", "Adaptacja opowiadania Stephena Kinga. Niesłusznie skazany na dożywocie bankier, stara się przetrwać w brutalnym, więziennym świecie.", 8.8, "SkazaninaShawshank.png"),
-            new(2,"Nietykalni", "Sparaliżowany milioner zatrudnia do opieki młodego chłopaka z przedmieścia, który właśnie wyszedł z więzienia.", 8.6, "NIETYKALNI.png"),
-            new(3,"Ojciec chrzestny", "Opowieść o nowojorskiej rodzinie mafijnej. Starzejący się Don Corleone pragnie przekazać władzę swojemu synowi.", 8.6, "OJCIECCHRZESTNY.png"),
-            new(4,"Władca Pierścieni: Powrót króla", "Zwieńczenie filmowej trylogii wg powieści Tolkiena. Aragorn jednoczy siły Śródziemia, szykując się do bitwy, która ma odwrócić uwagę Saurona od podążających w kierunku Góry Przeznaczenia hobbitów.", 8.4, "wladcy.png"),
-            new(5,"Chłopcy z ferajny", "Kilkunastoletni Henry i Tommy DeVito trafiają pod opiekę potężnego gangstera. Obaj szybko uczą się panujących w mafii reguł.", 8.3, "CHŁOPCYZFERAJNY.png"),
+            new(1,"Skazani na Shawshank",3.13,  "Adaptacja opowiadania Stephena Kinga. Niesłusznie skazany na dożywocie bankier, stara się przetrwać w brutalnym, więziennym świecie.", 8.8, "SkazaninaShawshank.png"),
+            new(2,"Nietykalni", 6.12, "Sparaliżowany milioner zatrudnia do opieki młodego chłopaka z przedmieścia, który właśnie wyszedł z więzienia.", 8.6, "NIETYKALNI.png"),
+            new(3,"Ojciec chrzestny",5.0, "Opowieść o nowojorskiej rodzinie mafijnej. Starzejący się Don Corleone pragnie przekazać władzę swojemu synowi.", 8.6, "OJCIECCHRZESTNY.png"),
+            new(4,"Władca Pierścieni: Powrót króla", 2.5, "Zwieńczenie filmowej trylogii wg powieści Tolkiena. Aragorn jednoczy siły Śródziemia, szykując się do bitwy, która ma odwrócić uwagę Saurona od podążających w kierunku Góry Przeznaczenia hobbitów.", 8.4, "wladcy.png"),
+            new(5,"Chłopcy z ferajny", 3.69, "Kilkunastoletni Henry i Tommy DeVito trafiają pod opiekę potężnego gangstera. Obaj szybko uczą się panujących w mafii reguł.", 8.3, "CHŁOPCYZFERAJNY.png"),
         };
 
 

@@ -2,13 +2,14 @@
 using PracaDomowa_1.Models;
 using PracaDomowa_1.Repositories;
 using System.Diagnostics;
+using System.Text.Json;
 
 namespace PracaDomowa_1.Controllers
 {
     public class HomeController : Controller
     {
         private readonly IMovieRepository _moviesRepository;
-
+        private const string ItemsList = "ItemsList";
         public HomeController(IMovieRepository moviesRepository)
         {
             _moviesRepository = moviesRepository;
@@ -53,5 +54,28 @@ namespace PracaDomowa_1.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
+
+
+        public JsonResult ShopingCards()
+        {
+            var sessionItems = HttpContext.Session.GetString(ItemsList);
+            var items = string.IsNullOrEmpty(sessionItems)
+                ? Enumerable.Empty<CartItem>()
+                : JsonSerializer.Deserialize<List<CartItem>>(sessionItems);
+
+
+
+            return Json(items);
+        }
+
+
+
+
+
+
+
+
     }
 }

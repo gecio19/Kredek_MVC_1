@@ -24,14 +24,31 @@
     </head>
 
 
+<i class="bi bi-cart" id="menuIcon" onclick="Open_Menu()"></i>
+
+
+      <div class="menu-box" id="menuBox">
+          <h4>Koszyk:</h4> 
+          <br />
+            <ul id="Cards">
+            </ul>
+
+    <input type="button" value="Realizuj" onclick="location.href='@Url.Action("Index", "Cart")'" />
+
+        </div>
+
+
+
 
     <table class="table">
         <thead>
-            <tr>
+            <tr>    
               <th>Number</th>
              <th>Nazwa</th>
              <th>Rating</th>
              <th>Zdjecie</th>
+             <th>Cena</th>
+
              <th>
 
              </th>
@@ -54,7 +71,12 @@
                     <img src="~/images/@Movie.Image" style="height: 9rem; width:15 rem" class="rounded" />
                 </td>
                 <td>
-                    <button type="button" class="btn btn-info"  onclick="MoveDetails(@Movie.Id)">Show More</button>
+                    @Movie.Price
+                </td>
+                <td>
+                    <button type="button" class="btn btn-info"  onclick="MoveDetails(@Movie.Id)">Szczegóły</button>
+                    <br>
+                    <button type="button" class="btn btn-success add-button" style="margin-top:10px;" value="@Movie.Id" onclick="CardAdd()">Dodaj do koszyka</button>
 
                 </td>
             </tr>
@@ -91,4 +113,136 @@
 
                             });
                         }
+
+                           $(".add-button").click(function() {
+                                $.ajax({
+                                    type: "POST",
+                                    url: "/Cart/AddItem",
+                                    data: { itemId: $(this).val() },
+                                    success: function() {
+                                        //alert("Film dodana");
+                                    },
+                                    error: function() {
+                                        alert("Błąd!");
+                                    }
+                                });
+                            });
+
+
+
+
+                            function CardAdd()
+                                {
+                                   
+                                    var result = '';
+                                   
+
+                                        $.ajax({
+                                            url: "ShopingCards",
+                                            type: "GET",
+                                            success: function (response) {
+                                                 
+                                                 $("#Cards").html(result);
+                                                        $.each(response, function (id, item) 
+                                                        {
+                                                    result += '<li>' + item.name + ' x ' + item.count+'</li>';
+                                                        });
+
+                                                     $("#Cards").html(result);
+
+                                            },
+                                            error: function (request, status, error) {
+                                                    
+
+                                                alert(request.responseText);
+                                            }
+
+                                        });
+                                }
+
+
+
+                                function Open_Menu()
+                                {
+                                     let menuBox = document.getElementById("menuBox");
+                                     let menuIcon = document.getElementById("menuIcon");
+                                     CardAdd();
+                                     menuBox.classList.toggle("open-menu");
+
+
+                                }
+
+
+
+
                     </script>
+
+
+
+ <style>
+#menuIcon
+        {
+            width: 70px;
+            border-radius: 50%;
+            position: fixed;
+            top:55px;
+            right: 60px;
+            cursor: pointer;
+            z-index: 120;
+        }
+
+
+.menu-box
+{
+    width: 0;
+    height: 0;
+    position: fixed;
+    top: 15%;
+    right: 0;
+    display: flex;
+    z-index: 100;
+    justify-content: center;
+    overflow: hidden; 
+    background-color:grey;
+    opacity: 80%;
+}
+
+        .menu-box.open-menu {
+            border-radius:20%;
+            width: 40vh;
+            height: 40vh;
+        }
+
+
+        .menu-box h4 
+                {
+                    opacity: 100%;
+            top: 0;
+            max-height:20px;
+                }
+
+                .menu-box ul
+                {
+                    color:black;
+                     opacity: 100%;
+                    position:absolute;
+                    top: 30px;
+                    margin-left:0;
+                    margin-right:0; 
+                }
+
+                .menu-box input
+                {
+                    background-color:green;
+                    opacity: 100%;
+                    position:absolute;
+                    top: 90%;
+                    margin-left:0;
+                    margin-right:0; 
+                }
+
+
+
+
+
+ </style>
